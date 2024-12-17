@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Flappy Bird</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style>
+    body{
+        background-color: #359befa7;
+    }
+    .score{
+      top:8%;
+      left:5%;
+      position:absolute;
+    }
+    .font{
+      font-family: "Pixelify sans";
+      font-size: 30px;
+      color:white;
+      font-weight: bold;
+    }
+    .animate{
+    animation: scroll 0.2s linear infinite;
+    }
+    @keyframes scroll {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: -38px 0;
+    }
+  }
+    .animate1{
+    animation: scroll1 4s linear infinite;
+    }
+    @keyframes scroll1 {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: -380px 0;
+    }
+}
+.hide{
+  display:none;
+}
+@keyframes bird{
+  0%{background-image: url('./public/pic/1.png');}
+  50%{background-image: url('./public/pic/2.png');}
+  100%{background-image: url('./public/pic/3.png');}
+}
+.birdanimate{
+  animation: bird 0.3s infinite;
+}
+.pipeupclass{
+  background-image: url('./public/pic/pipe1.png');
+  position: absolute;
+  z-index: 3;
+  width: 50px;
+  background-repeat: repeat-y;
+}
+.pipeupclassnight{
+  background-image: url('./public/pic/pipe1night.png');
+  position: absolute;
+  z-index: 3;
+  width: 50px;
+  background-repeat: repeat-y;
+}
+.pipeedge{
+  background-image: url('./public/pic/pipe2.png');
+  z-index: 3;
+  position: relative;
+  width: 50px;
+  background-size: 80px 25px;
+  height: 25px;
+  background-repeat: no-repeat;
+}
+
+.pipeedgenight{
+  background-image: url('./public/pic/pipe2night.png');
+  z-index: 3;
+  position: relative;
+  width: 50px;
+  background-size: 80px 25px;
+  height: 25px;
+  background-repeat: no-repeat;
+}
+.button{
+        margin-right:20px;
+        width: 100px;
+        border-radius: 20px;
+        background-color: rgba(0, 0, 0, 0);
+        border-color: white;
+        font-family: "Pixelify sans", sans-serif;
+    }
+</style>
+</head>
+<body>
+<header>
+<div id="roof" class="animate" style="background-image: url('./public/pic/brick.png');z-index: 4; position: fixed;height:3%; width:100%; left:0; top:20%;"></div>
+<div id="scoreboard" class="score font">Score: 0</div>
+<div style="position: absolute; top:8%; right: 5%;"><Button id="btnhard" class="button btn btn-primary" type="button" onclick="hard()">Hard</Button>
+  <Button id="btnturbo" class="button btn btn-primary" type="button" onclick="turbo()">Turbo</Button>
+</div>
+</header>
+<div id="gamebox" style="position: fixed; height: 57%; width:120vh; left:0; top:23%;">
+<div id="startgame" style="top: 10%; left: 10%; z-index: 4;position: absolute;" class="font">Press "Space bar" to start the game!</div>
+<div id="bird" class="birdanimate" style="background-image: url('./public/pic/1.png'); position:absolute;z-index: 2; left:50px; height: 25px; width: 35px; background-repeat: no-repeat; background-size: 35px 25px;"></div>
+<div id="bg1" class="animate1" style="background-image: url('./public/pic/bg.png'); background-repeat: repeat-x;position:fixed; width:100%; height: 260px; left:0; bottom:20%; "></div>
+  <div id="obstacles">
+  </div>
+</div>
+<footer id="floor" class="animate" style="background-image: url('./public/pic/ground.png');z-index: 5; background-repeat: repeat-x;background-color: #d5cf9e; position: fixed;height:20%; width:100%; left:0; bottom:0; box-shadow: 5px 3px 4px 6px solid rgba(0, 0, 0, 0.668);">
+<div class="font" style="z-index: 6;font-size: 20px; left:1%; bottom:22%;position: absolute;">The game concept was observed from 'https://github.com/KelvinThai/floppyBird_gamefi/tree/main/game' and few assets files were accessed from the original game files.</div>
+</footer>
+<script src="index.js"></script>
+</body>
+</html>
