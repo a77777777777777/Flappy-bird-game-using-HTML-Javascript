@@ -55,6 +55,21 @@ document.addEventListener("keypress",function(event){
         initializeGame();
       }
 });
+document.addEventListener("click",function(event){
+    if(isstarted){
+            spacebar();
+      }
+      else{
+        if(canstart){
+        document.getElementById("startgame").classList.add("hide");
+        isstarted=true;
+        startgame();
+        }
+      }
+      if(!canstart){
+        initializeGame();
+      }
+});
 
 function game(){
 if(isstarted){
