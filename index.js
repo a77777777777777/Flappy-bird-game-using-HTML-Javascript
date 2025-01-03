@@ -55,7 +55,7 @@ document.addEventListener("keypress",function(event){
         initializeGame();
       }
 });
-document.querySelector("body").addEventListener("click",function(event){
+document.querySelector("#gamebox").addEventListener("click",function(event){
     if(isstarted){
             spacebar();
       }
@@ -246,6 +246,9 @@ function changebackground(){
 }
 function turbo(){
     if(document.getElementById("btnturbo").innerText==="Turbo"){
+        //document.getElementById("btnturbo").focus("victoryrobo");
+        //document.getElementById("btnturbo").focus(false);
+        //document.getElementById("btnhard").focus();
         document.getElementById("btnturbo").innerText="Slow";
         pipespeed=15;
         obstacleintervallimit=30;
