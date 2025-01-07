@@ -41,7 +41,13 @@ body{
       background-position: -38px 0;
   }
 }
+.animate{
+animation: scroll1 2s linear infinite;
+}
 .animate1{
+animation: scroll1 3s linear infinite;
+}
+.animatebg{
 animation: scroll1 4s linear infinite;
 }
 @keyframes scroll1 {
@@ -149,7 +155,7 @@ to {
     <div id="sun" class="sun1"></div>
   <div id="startgame" style="top: 10%; left: 10%; z-index: 20;position: absolute;" class="font">Press "Space bar" to start the game!</div>
   <div id="bird" class="birdanimate" style="background-image: url('./public/pic/1.png'); position:absolute;z-index: 10; left:50px; height: 25px; width: 35px; background-repeat: no-repeat; background-size: 35px 25px;"></div>
-  <div id="bg1" class="animate1" style="background-image: url('./public/pic/bg.png');z-index: 1; background-repeat: repeat-x;position:fixed; width:100%; height: 260px; left:0; bottom:20%; "></div>
+  <div id="bg1" class="animatebg" style="background-image: url('./public/pic/bg.png');z-index: 1; background-repeat: repeat-x;position:fixed; width:100%; height: 260px; left:0; bottom:20%; "></div>
   <div id="obstacles">
   </div>
 </div>
