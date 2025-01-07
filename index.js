@@ -50,12 +50,12 @@ function resetgamewindowsize(){
         document.getElementById("floor").style.height=(temp*20/100)+"px";
         document.getElementById("bg1").style.bottom=(temp*20/100)+"px";
         }else{
-        temp=(temp-370-19+1);
+        temp=(temp-380-19+1);
         
         document.getElementById("roof").style.top=temp/2.5+"px";
         document.getElementById("roof").style.height="19px";
         document.getElementById("gamebox").style.top=temp/2.5+19+"px";
-        document.getElementById("gamebox").style.height="370px";
+        document.getElementById("gamebox").style.height="380px";
         document.getElementById("floor").style.height=(temp-temp/2.5)+"px";
         document.getElementById("bg1").style.bottom=(temp-temp/2.5)+"px";
         }
