@@ -12,17 +12,11 @@ var obstacleintervallimit=40;
 var highestscore=0;
 var canstart;
 var isday=true;
-var pipegap=28;
-
-if(document.height>document.width){
-    document.getElementById("roof").top="20vw"
-    document.getElementById("roof").height="3vw"
-    document.getElementById("gamebox").height="57vw"
-    document.getElementById("floor").height="20vw"
-    //size=document.querySelector("body").offsetWidth;
-}
+var pipegap=4.3;
+var pipeminheight;
 
 initializeGame();
+resetgamewindowsize();
 function initializeGame(){
     score=0;
     currentpipe=1;
@@ -40,6 +34,26 @@ function initializeGame(){
     document.getElementById("bird").classList.add("birdanimate");
     document.getElementById("bird").style.top=Math.floor(document.getElementById("gamebox").clientHeight/2)+"px";
 }
+
+window.addEventListener("resize",()=>{
+    resetgamewindowsize();
+});
+
+function resetgamewindowsize(){
+    if(window.innerHeight>window.innerWidth){
+        document.getElementById("roof").style.top="20vw";
+        document.getElementById("roof").style.height="3vw";
+        document.getElementById("gamebox").style.height="57vw";
+        document.getElementById("floor").style.height="20vw";
+    }else{
+        document.getElementById("roof").style.top="20vh";
+        document.getElementById("roof").style.height="3vh";
+        document.getElementById("gamebox").style.height="57vh";
+        document.getElementById("floor").style.height="20vh";
+    }
+    pipeminheight=document.getElementById("gamebox").offsetHeight*14/100;
+}
+
 function startgame(){
 new Audio("public/sounds/sfx_wing.ogg").play();
 if(timergameID===0){
@@ -127,10 +141,14 @@ function pipeobstacle(){
     if(obstacleinterval===0){
         obstacleinterval=obstacleintervallimit;
         obstaclecount+=1;
-        var gameboxwidth=document.getElementById("gamebox").offsetWidth+400;
+        var gameboxwidth=document.getElementById("gamebox").offsetWidth;
         var gameboxheight=document.getElementById("gamebox").offsetHeight;
-        var obstacleheight=Math.floor(Math.random()*(gameboxheight/2)+(gameboxheight*15/100));
-        var obstacleheight2=gameboxheight-obstacleheight-(gameboxheight*pipegap/100);
+        var obstacleheight=Math.floor(Math.random()*(gameboxheight-pipeminheight-document.getElementById("bird").offsetHeight*pipegap));
+
+        if(obstacleheight<pipeminheight) obstacleheight=Math.floor(Math.random()*(gameboxheight-pipeminheight-document.getElementById("bird").offsetHeight*pipegap));
+        if(obstacleheight<pipeminheight) obstacleheight=pipeminheight;
+
+        var obstacleheight2=gameboxheight-obstacleheight-(document.getElementById("bird").offsetHeight*pipegap);
         if(!isday){
         var tempstring1="<div id='pipeup"+obstaclecount+"' class='pipeupclass' style='left:"+gameboxwidth+"px;height: "+obstacleheight+"px;'><div id='pipeneckup"+obstaclecount+"' class='pipeedge' style='top: "+(obstacleheight-25)+"px ; transform: scaley(-1);'></div></div>";
         var tempstring2="<div id='pipedown"+obstaclecount+"' class='pipeupclass' style='left:"+gameboxwidth+"px;top: "+(gameboxheight-obstacleheight2)+"px ;height: "+obstacleheight2+"px;'><div id='pipeneckdown"+obstaclecount+"' class='pipeedge'></div></div>";
@@ -272,10 +290,10 @@ function hard(){
     document.getElementById("btnhard").blur();
     if(document.getElementById("btnhard").innerText==="Hard"){
         document.getElementById("btnhard").innerText="Easy";
-        pipegap=20;
+        pipegap=3.2;
     }
     else{
         document.getElementById("btnhard").innerText="Hard";
-        pipegap=28;
+        pipegap=4.4;
     }
 }

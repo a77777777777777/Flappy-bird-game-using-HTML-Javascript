@@ -7,42 +7,50 @@
 <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <style>
-    body{
-        background-color: #359befa7;
-        user-select: none;
-    }
-    .score{
-      top:8%;
-      left:5%;
-      position:absolute;
-    }
-    .font{
-      font-family: "Pixelify sans";
-      font-size: 30px;
-      color:white;
-      font-weight: bold;
-    }
-    .animate{
-    animation: scroll 0.2s linear infinite;
-    }
-    @keyframes scroll {
-    from {
-        background-position: 0 0;
-    }
-    to {
-        background-position: -38px 0;
-    }
+body{
+    background-color: #359befa7;
+    user-select: none;
+}
+.score{
+  top:8%;
+  left:5%;
+  z-index: 2;
+  position:absolute;
+}
+.font{
+  font-family: "Pixelify sans";
+  font-size: 30px;
+  color:white;
+  font-weight: bold;
+}
+.animateroof{
+  animation: scroll 0.2s linear infinite;
+  background-image: url('./public/pic/brick.png');
+  z-index: 4;
+  position: fixed;
+  height:3%;
+  width:100%;
+  left:0;
+  top:20%;
   }
-    .animate1{
-    animation: scroll1 4s linear infinite;
-    }
-    @keyframes scroll1 {
-    from {
-        background-position: 0 0;
-    }
-    to {
-        background-position: -380px 0;
-    }
+  @keyframes scroll {
+  from {
+      background-position: 0 0;
+  }
+  to {
+      background-position: -38px 0;
+  }
+}
+.animate1{
+animation: scroll1 4s linear infinite;
+}
+@keyframes scroll1 {
+from {
+    background-position: 0 0;
+}
+to {
+    background-position: -380px 0;
+}
 }
 .hide{
   display:none;
@@ -58,20 +66,20 @@
 .pipeupclass{
   background-image: url('./public/pic/pipe1.png');
   position: absolute;
-  z-index: 3;
+  z-index: 13;
   width: 50px;
   background-repeat: repeat-y;
 }
 .pipeupclassnight{
   background-image: url('./public/pic/pipe1night.png');
   position: absolute;
-  z-index: 3;
+  z-index: 13;
   width: 50px;
   background-repeat: repeat-y;
 }
 .pipeedge{
   background-image: url('./public/pic/pipe2.png');
-  z-index: 3;
+  z-index: 13;
   position: relative;
   width: 50px;
   background-size: 80px 25px;
@@ -81,7 +89,7 @@
 
 .pipeedgenight{
   background-image: url('./public/pic/pipe2night.png');
-  z-index: 3;
+  z-index: 13;
   position: relative;
   width: 50px;
   background-size: 80px 25px;
@@ -89,19 +97,19 @@
   background-repeat: no-repeat;
 }
 .button{
-        margin-right:20px;
-        width: 100px;
-        border-radius: 20px;
-        background-color: rgba(0, 0, 0, 0);
-        border-color: white;
-        font-family: "Pixelify sans", sans-serif;
+  margin-right:20px;
+  width: 100px;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0);
+  border-color: white;
+  font-family: "Pixelify sans", sans-serif;
     }
   .sun1 {
   position:absolute;
   border-radius:50%;
-  top:27%;
+  top:10%;
   left:80%;
-  z-index:12;
+  z-index:5;
 }
 .suncolor1{
   height:40px;
@@ -131,17 +139,17 @@
   <img id="pipe2night" src="url('./public/pic/pipe2night.png')" style="display: none;">
 
 <header>
-<div id="sun" class="sun1"></div>
-<div id="roof" class="animate" style="background-image: url('./public/pic/brick.png');z-index: 4; position: fixed;height:3%; width:100%; left:0; top:20%;"></div>
+<div id="roof" class="animateroof"></div>
 <div id="scoreboard" class="score font">Score: 0</div>
-<div style="position: absolute; top:8%; right: 5%;"><Button id="btnhard" class="button btn btn-primary" type="button" onclick="hard()">Hard</Button>
+<div style="position: absolute; top:8%; right: 5%; z-index: 2;"><Button id="btnhard" class="button btn btn-primary" type="button" onclick="hard()">Hard</Button>
   <Button id="btnturbo" class="button btn btn-primary" type="button" onclick="turbo()">Turbo</Button>
 </div>
 </header>
   <div id="gamebox" style="position: fixed; height: 57%; width:100vw; left:0; top:23%;">
-  <div id="startgame" style="top: 10%; left: 10%; z-index: 4;position: absolute;" class="font">Press "Space bar" to start the game!</div>
-  <div id="bird" class="birdanimate" style="background-image: url('./public/pic/1.png'); position:absolute;z-index: 2; left:50px; height: 25px; width: 35px; background-repeat: no-repeat; background-size: 35px 25px;"></div>
-  <div id="bg1" class="animate1" style="background-image: url('./public/pic/bg.png'); background-repeat: repeat-x;position:fixed; width:100%; height: 260px; left:0; bottom:20%; "></div>
+    <div id="sun" class="sun1"></div>
+  <div id="startgame" style="top: 10%; left: 10%; z-index: 20;position: absolute;" class="font">Press "Space bar" to start the game!</div>
+  <div id="bird" class="birdanimate" style="background-image: url('./public/pic/1.png'); position:absolute;z-index: 10; left:50px; height: 25px; width: 35px; background-repeat: no-repeat; background-size: 35px 25px;"></div>
+  <div id="bg1" class="animate1" style="background-image: url('./public/pic/bg.png');z-index: 1; background-repeat: repeat-x;position:fixed; width:100%; height: 260px; left:0; bottom:20%; "></div>
   <div id="obstacles">
   </div>
 </div>
