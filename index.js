@@ -245,13 +245,14 @@ function changebackground(){
     }
 }
 function turbo(){
+    document.getElementById("btnturbo").blur();
     if(document.getElementById("btnturbo").innerText==="Turbo"){
         //document.getElementById("btnturbo").focus("victoryrobo");
         //document.getElementById("btnturbo").focus(false);
         //document.getElementById("btnhard").focus();
         document.getElementById("btnturbo").innerText="Slow";
         pipespeed=15;
-        obstacleintervallimit=30;
+        obstacleintervallimit=23;
     }
     else{
         document.getElementById("btnturbo").innerText="Turbo";
@@ -260,6 +261,7 @@ function turbo(){
     }
 }
 function hard(){
+    document.getElementById("btnhard").blur();
     if(document.getElementById("btnhard").innerText==="Hard"){
         document.getElementById("btnhard").innerText="Easy";
         pipegap=20;
