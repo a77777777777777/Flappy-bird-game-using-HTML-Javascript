@@ -14,6 +14,14 @@ var canstart;
 var isday=true;
 var pipegap=28;
 
+if(document.height>document.width){
+    document.getElementById("roof").top="20vw"
+    document.getElementById("roof").height="3vw"
+    document.getElementById("gamebox").height="57vw"
+    document.getElementById("floor").height="20vw"
+    //size=document.querySelector("body").offsetWidth;
+}
+
 initializeGame();
 function initializeGame(){
     score=0;
