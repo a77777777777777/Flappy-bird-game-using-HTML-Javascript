@@ -200,7 +200,17 @@ function pipeobstacle(){
                     birdtop+=3; 
                 }
             if(birdtop<=document.getElementById("pipeup"+i).offsetHeight|| (birdtop+document.getElementById("bird").offsetHeight)>=pipedowntop){
-
+                isstarted=false;
+                document.getElementById("bird").style.transform="rotate(80deg)";
+                //console.log("birdtop:",birdtop);
+                //console.log("pipetop:",document.getElementById("pipeup"+i).offsetHeight);
+                //console.log("birdtop+bird height:",(birdtop+document.getElementById("bird").offsetHeight));
+                //console.log("pipedowntop:",pipedowntop);
+                new Audio("public/sounds/sfx_hit.ogg").play();
+                timergameID=setInterval(playmusic,200);
+                document.getElementById("bird").classList.remove("birdanimate");
+                gameover();
+                break;
             }
             //document.getElementById("scoreboard").innerText="asdf";
         }
