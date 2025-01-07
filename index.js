@@ -41,14 +41,27 @@ window.addEventListener("resize",()=>{
 
 function resetgamewindowsize(){
     if(window.innerHeight>window.innerWidth){
-        document.getElementById("roof").style.top="20vw";
-        document.getElementById("roof").style.height="3vw";
-        document.getElementById("gamebox").style.height="57vw";
-        document.getElementById("floor").style.height="20vw";
+        var temp=window.innerHeight;
+        if(temp<600){
+        document.getElementById("roof").style.top=(temp*20/100)+"px";
+        document.getElementById("roof").style.height=(temp*3/100)+"px";
+        document.getElementById("gamebox").style.height=(temp*57/100)+"px";
+        document.getElementById("gamebox").style.top=(temp*23/100)+"px";
+        document.getElementById("floor").style.height=(temp*20/100)+"px";
+        }else{
+        temp=(temp-345-19+1)/2;
+        
+        document.getElementById("roof").style.top=temp+"px";
+        document.getElementById("roof").style.height="19px";
+        document.getElementById("gamebox").style.top=temp+19+"px";
+        document.getElementById("gamebox").style.height="345px";
+        document.getElementById("floor").style.height=temp+"px";
+        }
     }else{
         document.getElementById("roof").style.top="20vh";
         document.getElementById("roof").style.height="3vh";
         document.getElementById("gamebox").style.height="57vh";
+        document.getElementById("gamebox").style.top="23vh";
         document.getElementById("floor").style.height="20vh";
     }
     pipeminheight=document.getElementById("gamebox").offsetHeight*14/100;
