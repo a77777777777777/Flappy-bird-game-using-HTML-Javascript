@@ -48,14 +48,16 @@ function resetgamewindowsize(){
         document.getElementById("gamebox").style.height=(temp*57/100)+"px";
         document.getElementById("gamebox").style.top=(temp*23/100)+"px";
         document.getElementById("floor").style.height=(temp*20/100)+"px";
+        document.getElementById("bg1").style.bottom=(temp*20/100)+"px";
         }else{
-        temp=(temp-345-19+1)/2;
+        temp=(temp-370-19+1);
         
-        document.getElementById("roof").style.top=temp+"px";
+        document.getElementById("roof").style.top=temp/2.5+"px";
         document.getElementById("roof").style.height="19px";
-        document.getElementById("gamebox").style.top=temp+19+"px";
-        document.getElementById("gamebox").style.height="345px";
-        document.getElementById("floor").style.height=temp+"px";
+        document.getElementById("gamebox").style.top=temp/2.5+19+"px";
+        document.getElementById("gamebox").style.height="370px";
+        document.getElementById("floor").style.height=(temp-temp/2.5)+"px";
+        document.getElementById("bg1").style.bottom=(temp-temp/2.5)+"px";
         }
     }else{
         document.getElementById("roof").style.top="20vh";
@@ -63,6 +65,7 @@ function resetgamewindowsize(){
         document.getElementById("gamebox").style.height="57vh";
         document.getElementById("gamebox").style.top="23vh";
         document.getElementById("floor").style.height="20vh";
+        document.getElementById("bg1").style.bottom="20vh";
     }
     pipeminheight=document.getElementById("gamebox").offsetHeight*14/100;
 }
@@ -197,17 +200,7 @@ function pipeobstacle(){
                     birdtop+=3; 
                 }
             if(birdtop<=document.getElementById("pipeup"+i).offsetHeight|| (birdtop+document.getElementById("bird").offsetHeight)>=pipedowntop){
-                isstarted=false;
-                document.getElementById("bird").style.transform="rotate(80deg)";
-                //console.log("birdtop:",birdtop);
-                //console.log("pipetop:",document.getElementById("pipeup"+i).offsetHeight);
-                //console.log("birdtop+bird height:",(birdtop+document.getElementById("bird").offsetHeight));
-                //console.log("pipedowntop:",pipedowntop);
-                new Audio("public/sounds/sfx_hit.ogg").play();
-                timergameID=setInterval(playmusic,200);
-                document.getElementById("bird").classList.remove("birdanimate");
-                gameover();
-                break;
+
             }
             //document.getElementById("scoreboard").innerText="asdf";
         }
