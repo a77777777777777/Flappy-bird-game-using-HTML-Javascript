@@ -48,9 +48,6 @@ window.addEventListener("wheel",(e)=>{
 window.addEventListener("touchmove",(e)=>{
     e.preventDefault();
 });
-window.addEventListener("touchend",(e)=>{
-    e.preventDefault();
-});
 
 function resetgamewindowsize(){
     if(window.innerHeight>window.innerWidth){
