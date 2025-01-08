@@ -15,8 +15,9 @@ var isday=true;
 var pipegap=4.3;
 var pipeminheight;
 
-initializeGame();
+
 resetgamewindowsize();
+initializeGame();
 function initializeGame(){
     score=0;
     currentpipe=1;
@@ -38,7 +39,7 @@ function initializeGame(){
 window.addEventListener("resize",()=>{
     resetgamewindowsize();
 });
-window.addEventListener("resize",(e)=>{
+window.addEventListener("touchmove",(e)=>{
     e.preventDefault();
 });
 
@@ -46,6 +47,7 @@ function resetgamewindowsize(){
     if(window.innerHeight>window.innerWidth){
         var temp=window.innerHeight;
         if(temp<600){
+        //document.getElementById("scoreboard").style.top=(temp*10/100)+"px";
         document.getElementById("scoreboard").style.top=(temp*10/100)+"px";
         document.getElementById("gamesetting").style.top=(temp*10/100)+"px";
         document.getElementById("roof").style.top=(temp*20/100)+"px";
