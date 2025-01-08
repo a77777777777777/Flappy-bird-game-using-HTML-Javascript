@@ -39,10 +39,7 @@ function initializeGame(){
 window.addEventListener("resize",()=>{
     resetgamewindowsize();
 });
-window.addEventListener("touchmove",(e)=>{
-    e.preventDefault();
-});
-window.addEventListener("dblclick",(e)=>{
+window.addEventListener("drag",(e)=>{
     e.preventDefault();
 });
 
