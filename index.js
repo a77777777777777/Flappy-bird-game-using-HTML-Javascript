@@ -38,11 +38,16 @@ function initializeGame(){
 window.addEventListener("resize",()=>{
     resetgamewindowsize();
 });
+window.addEventListener("resize",(e)=>{
+    e.preventDefault();
+});
 
 function resetgamewindowsize(){
     if(window.innerHeight>window.innerWidth){
         var temp=window.innerHeight;
         if(temp<600){
+        document.getElementById("scoreboard").style.top=(temp*10/100)+"px";
+        document.getElementById("gamesetting").style.top=(temp*10/100)+"px";
         document.getElementById("roof").style.top=(temp*20/100)+"px";
         document.getElementById("roof").style.height=(temp*3/100)+"px";
         document.getElementById("gamebox").style.height=(temp*57/100)+"px";
@@ -50,16 +55,20 @@ function resetgamewindowsize(){
         document.getElementById("floor").style.height=(temp*20/100)+"px";
         document.getElementById("bg1").style.bottom=(temp*20/100)+"px";
         }else{
-        temp=(temp-380-19+1);
+        temp=(temp-400-19+1);
         
+        document.getElementById("scoreboard").style.top=temp/4+"px";
+        document.getElementById("gamesetting").style.top=temp/4+"px";
         document.getElementById("roof").style.top=temp/2.5+"px";
         document.getElementById("roof").style.height="19px";
         document.getElementById("gamebox").style.top=temp/2.5+19+"px";
-        document.getElementById("gamebox").style.height="380px";
+        document.getElementById("gamebox").style.height="400px";
         document.getElementById("floor").style.height=(temp-temp/2.5)+"px";
         document.getElementById("bg1").style.bottom=(temp-temp/2.5)+"px";
         }
     }else{
+        document.getElementById("scoreboard").style.top="10vh";
+        document.getElementById("gamesetting").style.top="10vh";
         document.getElementById("roof").style.top="20vh";
         document.getElementById("roof").style.height="3vh";
         document.getElementById("gamebox").style.height="57vh";
