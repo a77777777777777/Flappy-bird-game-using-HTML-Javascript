@@ -42,6 +42,9 @@ window.addEventListener("resize",()=>{
 window.addEventListener("touchmove",(e)=>{
     e.preventDefault();
 });
+window.addEventListener("dblclick",(e)=>{
+    e.preventDefault();
+});
 
 function resetgamewindowsize(){
     if(window.innerHeight>window.innerWidth){
