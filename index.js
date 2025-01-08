@@ -42,6 +42,15 @@ window.addEventListener("resize",()=>{
 window.addEventListener("drag",(e)=>{
     e.preventDefault();
 });
+window.addEventListener("wheel",(e)=>{
+    e.preventDefault();
+});
+window.addEventListener("touchmove",(e)=>{
+    e.preventDefault();
+});
+window.addEventListener("touchend",(e)=>{
+    e.preventDefault();
+});
 
 function resetgamewindowsize(){
     if(window.innerHeight>window.innerWidth){
