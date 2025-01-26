@@ -39,12 +39,6 @@ function initializeGame(){
 window.addEventListener("resize",()=>{
     resetgamewindowsize();
 });
-window.addEventListener("drag",(e)=>{
-    e.preventDefault();
-});
-window.addEventListener("wheel",(e)=>{
-    e.preventDefault();
-});
 window.addEventListener("touchmove",(e)=>{
     e.preventDefault();
 });
@@ -110,7 +104,23 @@ document.addEventListener("keypress",function(event){
         initializeGame();
       }
 });
-document.querySelector("#gamebox").addEventListener("click",function(event){
+document.getElementById("gamebox").addEventListener("mousedown",function(event){
+    if(isstarted){
+            spacebar();
+      }
+      else{
+        if(canstart){
+        document.getElementById("startgame").classList.add("hide");
+        isstarted=true;
+        startgame();
+        }
+      }
+      if(!canstart){
+        initializeGame();
+      }
+});
+document.getElementById("gamebox").addEventListener("touchdown",function(event){
+    event.preventDefault();
     if(isstarted){
             spacebar();
       }
