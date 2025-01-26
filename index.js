@@ -39,10 +39,7 @@ function initializeGame(){
 window.addEventListener("resize",()=>{
     resetgamewindowsize();
 });
-document.getElementById("gamebox").addEventListener("touchdown",(e)=>{
-    e.preventDefault();
-});
-document.getElementById("gamebox").addEventListener("touchup",function(event){
+document.getElementById("gamebox").addEventListener("touchend",function(event){
     event.preventDefault();
 });
 document.getElementById("gamebox").addEventListener("touchmove",function(event){
