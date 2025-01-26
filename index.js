@@ -48,17 +48,16 @@ document.getElementById("gamebox").addEventListener("touchmove",function(event){
 document.getElementById("gamebox").addEventListener("dblclick",function(event){
     event.preventDefault();
 });
-document.querySelector("body").addEventListener("touchend",function(event){
+document.getElementById("floor").addEventListener("touchend",function(event){
     event.preventDefault();
 });
-document.querySelector("body").addEventListener("touchmove",function(event){
+document.getElementById("floor").addEventListener("touchmove",function(event){
     event.preventDefault();
 });
-document.querySelector("body").addEventListener("dblclick",function(event){
+document.getElementById("floor").addEventListener("dblclick",function(event){
     event.preventDefault();
 });
-document.querySelector("body").addEventListener("touchstart",function(event){
-    document.getElementById("scoreboard").innerText="tstart";
+document.getElementById("floor").addEventListener("touchstart",function(event){
     event.preventDefault();
 });
 
