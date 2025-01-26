@@ -10,7 +10,7 @@ var timergameID=0;
 var obstacleinterval=0;
 var obstacleintervallimit=40;
 var highestscore=0;
-var canstart;
+var canstart,interval;
 var isday=true;
 var pipegap=4.3;
 var pipeminheight;
@@ -25,6 +25,7 @@ function initializeGame(){
     obstaclecount=0;
     isspacebar=0;
     canstart=true;
+    interval=false;
     isday=true;
     changebackground();
     obstacleinterval=obstacleintervallimit;
@@ -119,7 +120,7 @@ document.addEventListener("keypress",function(event){
         startgame();
         }
       }
-      if(!canstart){
+      if(interval && !canstart){
         initializeGame();
       }
 });
@@ -134,7 +135,7 @@ document.getElementById("gamebox").addEventListener("mousedown",function(event){
         startgame();
         }
       }
-      if(!canstart){
+      if(interval && !canstart){
         initializeGame();
       }
 });
@@ -150,7 +151,7 @@ document.getElementById("gamebox").addEventListener("touchstart",function(event)
         startgame();
         }
       }
-      if(!canstart){
+      if(interval && !canstart){
         initializeGame();
       }
 });
@@ -295,7 +296,7 @@ function gameover(){
     document.getElementById("startgame").classList.remove("hide");
     document.getElementById("startgame").innerText="Game Over! Press any key to continue.";
     document.getElementById("startgame").innerHTML="<p class='font'>Score: "+score+"</p><p class='font'>High Score: "+highestscore+"</p>";
-    canstart=false;
+    canstart=false; setTimeout(()=>{interval=true;},2000);
 }
 function changebackground(){
     if(isday){
