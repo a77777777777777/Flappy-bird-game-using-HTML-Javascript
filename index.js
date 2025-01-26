@@ -39,16 +39,16 @@ function initializeGame(){
 window.addEventListener("resize",()=>{
     resetgamewindowsize();
 });
-document.addEventListener("touchdown",(e)=>{
+document.getElementById("gamebox").addEventListener("touchdown",(e)=>{
     e.preventDefault();
 });
-document.addEventListener("touchup",function(event){
+document.getElementById("gamebox").addEventListener("touchup",function(event){
     event.preventDefault();
 });
-document.addEventListener("touchmove",function(event){
+document.getElementById("gamebox").addEventListener("touchmove",function(event){
     event.preventDefault();
 });
-document.addEventListener("dblclick",function(event){
+document.getElementById("gamebox").addEventListener("dblclick",function(event){
     event.preventDefault();
 });
 
