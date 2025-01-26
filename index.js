@@ -39,13 +39,13 @@ function initializeGame(){
 window.addEventListener("resize",()=>{
     resetgamewindowsize();
 });
-document.querySelector("body").addEventListener("touchend",function(event){
+document.getElementById("gamebox").addEventListener("touchend",function(event){
     event.preventDefault();
 });
-document.querySelector("body").addEventListener("touchmove",function(event){
+document.getElementById("gamebox").addEventListener("touchmove",function(event){
     event.preventDefault();
 });
-document.querySelector("body").addEventListener("dblclick",function(event){
+document.getElementById("gamebox").addEventListener("dblclick",function(event){
     event.preventDefault();
 });
 
@@ -126,7 +126,7 @@ document.getElementById("gamebox").addEventListener("mousedown",function(event){
         initializeGame();
       }
 });
-document.getElementById("gamebox").addEventListener("touchdown",function(event){
+document.getElementById("gamebox").addEventListener("touchstart",function(event){
     event.preventDefault();
     if(isstarted){
             spacebar();
