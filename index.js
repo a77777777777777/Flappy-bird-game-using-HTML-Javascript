@@ -58,7 +58,7 @@ document.querySelector("body").addEventListener("dblclick",function(event){
     event.preventDefault();
 });
 document.querySelector("body").addEventListener("touchstart",function(event){
-    document.getElementById("score").innerText="tstart";
+    document.getElementById("scoreboard").innerText="tstart";
     event.preventDefault();
 });
 
