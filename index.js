@@ -136,6 +136,12 @@ document.getElementById("gamebox").addEventListener("touchdown",function(event){
       }
 });
 
+document.getElementById("gamebox").addEventListener("touchup",function(event){
+    event.preventDefault();
+});
+document.getElementById("gamebox").addEventListener("touchmove",function(event){
+    event.preventDefault();
+});
 function game(){
 if(isstarted){
     if(birdangle<80) birdangle+=4;
