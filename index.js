@@ -39,8 +39,17 @@ function initializeGame(){
 window.addEventListener("resize",()=>{
     resetgamewindowsize();
 });
-window.addEventListener("touchmove",(e)=>{
+window.addEventListener("touchdown",(e)=>{
     e.preventDefault();
+});
+window.addEventListener("touchup",function(event){
+    event.preventDefault();
+});
+window.addEventListener("touchmove",function(event){
+    event.preventDefault();
+});
+window.addEventListener("dblclick",function(event){
+    event.preventDefault();
 });
 
 function resetgamewindowsize(){
@@ -89,6 +98,7 @@ timergameID=setInterval(game,30);
 isspacebar=11;
 birdangle=-50;
 }
+
 document.addEventListener("keypress",function(event){
     if(isstarted && event.key===" "){
             spacebar();
@@ -136,12 +146,6 @@ document.getElementById("gamebox").addEventListener("touchdown",function(event){
       }
 });
 
-document.getElementById("gamebox").addEventListener("touchup",function(event){
-    event.preventDefault();
-});
-document.getElementById("gamebox").addEventListener("touchmove",function(event){
-    event.preventDefault();
-});
 function game(){
 if(isstarted){
     if(birdangle<80) birdangle+=4;
