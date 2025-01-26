@@ -48,6 +48,19 @@ document.getElementById("gamebox").addEventListener("touchmove",function(event){
 document.getElementById("gamebox").addEventListener("dblclick",function(event){
     event.preventDefault();
 });
+document.querySelector("body").addEventListener("touchend",function(event){
+    event.preventDefault();
+});
+document.querySelector("body").addEventListener("touchmove",function(event){
+    event.preventDefault();
+});
+document.querySelector("body").addEventListener("dblclick",function(event){
+    event.preventDefault();
+});
+document.querySelector("body").addEventListener("touchstart",function(event){
+    document.getElementById("score").innerText="tstart";
+    event.preventDefault();
+});
 
 function resetgamewindowsize(){
     if(window.innerHeight>window.innerWidth){
