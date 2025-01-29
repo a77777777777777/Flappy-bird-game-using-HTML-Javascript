@@ -15,9 +15,15 @@ var isday=true;
 var pipegap=4.3;
 var pipeminheight;
 
+var a1=new Audio("public/sounds/sfx_wing.ogg");
+var a2=new Audio("public/sounds/sfx_hit.ogg");
+var a3=new Audio("./public/sounds/sfx_die.ogg");
+var a4=new Audio("public/sounds/sfx_point.ogg");
 
-resetgamewindowsize();
-initializeGame();
+window.onload=()=>{ 
+    resetgamewindowsize();
+    initializeGame();
+}
 function initializeGame(){
     score=0;
     currentpipe=1;
@@ -284,7 +290,7 @@ function pipeobstacle(){
                 changebackground();
             }
             document.getElementById("scoreboard").innerText="Score: "+score;
-            new Audio("public/sounds/sfx_point.ogg").play();
+            new Audio("public/sounds/sfx_point.ogg").play(); 
         }
         document.getElementById("pipeup"+i).style.left=(pipeleft-pipespeed)+"px";
         document.getElementById("pipedown"+i).style.left=(pipeleft-pipespeed)+"px";
