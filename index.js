@@ -155,6 +155,22 @@ document.getElementById("gamebox").addEventListener("touchstart",function(event)
         initializeGame();
       }
 });
+document.getElementById("floor").addEventListener("touchstart",function(event){
+    event.preventDefault();
+    if(isstarted){
+            spacebar();
+      }
+      else{
+        if(canstart){
+        document.getElementById("startgame").classList.add("hide");
+        isstarted=true;
+        startgame();
+        }
+      }
+      if(interval && !canstart){
+        initializeGame();
+      }
+});
 
 function game(){
 if(isstarted){
