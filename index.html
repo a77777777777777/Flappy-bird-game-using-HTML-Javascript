@@ -159,8 +159,8 @@ to {
 }
 </style>
 <script>
-  var rotation=0; var loadingid=setInterval(()=>{
-    rotation+=3; if(rotation>360)rotation=3; document.getElementById("loadingbox").style.transform="rotate("+rotation+"deg)";},1);
+  var rotation=0; const loadingid=setInterval(()=>{
+    rotation+=3; if(rotation<0){clearInterval(loadingid);document.getElementById("loading").style.display="none";}if(rotation>360)rotation=3; document.getElementById("loadingbox").style.transform="rotate("+rotation+"deg)";},1);
 </script>
 </head>
 <body>

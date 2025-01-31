@@ -21,13 +21,11 @@ var a3=new Audio("./public/sounds/sfx_die.ogg");
 var a4=new Audio("public/sounds/sfx_point.ogg");
 
 window.onload=()=>{
-    document.getElementById("loading").style.display="none";
-    clearInterval(loadingid);
     resetgamewindowsize();
     initializeGame();
 }
 function initializeGame(){
-    score=0;
+    score=0; rotation=-500;
     currentpipe=1;
     currentpipe2=1;
     obstaclecount=0;
