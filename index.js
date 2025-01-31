@@ -20,7 +20,9 @@ var a2=new Audio("public/sounds/sfx_hit.ogg");
 var a3=new Audio("./public/sounds/sfx_die.ogg");
 var a4=new Audio("public/sounds/sfx_point.ogg");
 
-window.onload=()=>{ 
+window.onload=()=>{
+    document.getElementById("loading").style.display="none";
+    clearInterval(loadingid);
     resetgamewindowsize();
     initializeGame();
 }
