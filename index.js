@@ -23,7 +23,10 @@ var a4=new Audio("public/sounds/sfx_point.ogg");
 window.onload=()=>{
     resetgamewindowsize();
     initializeGame();
+    hideloading();
 }
+function hideloading(){clearInterval(loadingid);document.getElementById("loading").style.display="none";}
+
 function initializeGame(){
     score=0;
     currentpipe=1;
