@@ -25,7 +25,7 @@ window.onload=()=>{
     initializeGame();
 }
 function initializeGame(){
-    score=0; rotation=-500;
+    score=0;
     currentpipe=1;
     currentpipe2=1;
     obstaclecount=0;
