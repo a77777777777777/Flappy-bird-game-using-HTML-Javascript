@@ -161,10 +161,10 @@ to {
 <script>
   var rotation=0; const loadingid=setInterval(()=>{
     rotation+=3; if(rotation>360)rotation=3; document.getElementById("loadingbox").style.transform="rotate("+rotation+"deg)";},1);
-    window.onload=()=>{clearInterval(loadingid);document.getElementById("loading").style.display="none";}
+    function hideloading(){clearInterval(loadingid);document.getElementById("loading").style.display="none";}
 </script>
 </head>
-<body>
+<body onload="hideloading()">
   
   <div id="loading"><div id="loadingbox" style="position: absolute;top:43vh;left:49vw;"> <div style="border-radius: 30px;border:10px solid rgb(18, 174, 253);height: 20px;width: 20px;">
     <div class="geartooth" style="top:-6px;left:16px;"></div><div class="geartooth" style="top:37px;left:16px;"></div>
