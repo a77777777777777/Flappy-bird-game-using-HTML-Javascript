@@ -14,11 +14,17 @@ var canstart,interval;
 var isday=true;
 var pipegap=4.3;
 var pipeminheight;
+// pre loading the audio to prevent any lag
+var wingsound=new Audio("public/sounds/sfx_wing.ogg");
+var hitsound=new Audio("public/sounds/sfx_hit.ogg");
+var diesound=new Audio("./public/sounds/sfx_die.ogg");
+var pointsound=new Audio("public/sounds/sfx_point.ogg");
 
-var a1=new Audio("public/sounds/sfx_wing.ogg");
-var a2=new Audio("public/sounds/sfx_hit.ogg");
-var a3=new Audio("./public/sounds/sfx_die.ogg");
-var a4=new Audio("public/sounds/sfx_point.ogg");
+//playing the audio using location for coutinuously playing without pause.
+function playwing(){new Audio("public/sounds/sfx_wing.ogg").play();}
+function playhit(){new Audio("public/sounds/sfx_hit.ogg").play();}
+function playdie(){new Audio("public/sounds/sfx_die.ogg").play();}
+function playpoint(){new Audio("public/sounds/sfx_point.ogg").play();}
 
 window.onload=()=>{
     resetgamewindowsize();
@@ -40,7 +46,7 @@ function initializeGame(){
     obstacleinterval=obstacleintervallimit;
     document.getElementById("obstacles").innerHTML="";
     document.getElementById("scoreboard").innerText="Score: 0";
-    document.getElementById("startgame").innerText="Press 'Space bar' to start the game!";
+    document.getElementById("startgame").innerText="Press 'Space bar or Click' to start the game!";
     document.getElementById("bird").style.transform="rotate(0deg)";
     document.getElementById("bird").classList.add("birdanimate");
     document.getElementById("bird").style.top=Math.floor(document.getElementById("gamebox").clientHeight/2)+"px";
@@ -65,9 +71,6 @@ document.getElementById("floor").addEventListener("touchmove",function(event){
     event.preventDefault();
 });
 document.getElementById("floor").addEventListener("dblclick",function(event){
-    event.preventDefault();
-});
-document.getElementById("floor").addEventListener("touchstart",function(event){
     event.preventDefault();
 });
 
@@ -110,7 +113,8 @@ function resetgamewindowsize(){
 }
 
 function startgame(){
-new Audio("public/sounds/sfx_wing.ogg").play();
+//new Audio("public/sounds/sfx_wing.ogg").play();
+document.getElementById("wing").click();
 if(timergameID===0){
 timergameID=setInterval(game,30);
 }
@@ -191,7 +195,7 @@ if(isstarted){
     if((birdy+document.getElementById("bird").offsetHeight)>document.getElementById("gamebox").offsetHeight){ 
         birdy=document.getElementById("gamebox").offsetHeight-document.getElementById("bird").offsetHeight;
         document.getElementById("bird").style.top=birdy+"px";
-        new Audio("public/sounds/sfx_hit.ogg").play();
+        document.getElementById("hit").click(); //new Audio("public/sounds/sfx_hit.ogg").play();
         isstarted=false;
         document.getElementById("bird").style.transform="rotate(80deg)";
         document.getElementById("bird").classList.remove("birdanimate");
@@ -221,7 +225,8 @@ else{
 }
 
 function playmusic(){
-    new Audio("./public/sounds/sfx_die.ogg").play();
+    //new Audio("./public/sounds/sfx_die.ogg").play();
+    document.getElementById("die").click();
     clearInterval(timergameID);
 }
 
@@ -258,18 +263,18 @@ function pipeobstacle(){
         var pipedowntop=(document.getElementById("pipedown"+i).style.top.toString().slice(0,document.getElementById("pipedown"+i).style.top.toString().length-2)*1);
 
         if((birdleft+document.getElementById("bird").offsetWidth)>=pipeleft && birdleft<=(pipeleft+document.getElementById("pipeup"+i).offsetWidth)){  
-            if(birdangle<-10){ 
+            if(birdangle<-10){
                 if((birdleft+document.getElementById("bird").offsetWidth)>(pipeleft+document.getElementById("pipeup"+i).offsetWidth)){
-                    birdtop+=4; 
+                    birdtop+=4;
                 }
                 else if(birdangle>20){
                     birdtop+=4;
                 }
                 }
                 else if((birdleft+(document.getElementById("bird").offsetWidth/3))>(pipeleft+document.getElementById("pipeup"+i).offsetWidth) && (birdtop+document.getElementById("bird").offsetHeight)>=pipedowntop){
-                    birdtop+=3; 
+                    birdtop+=3;
                 }else if((birdleft+(document.getElementById("bird").offsetWidth/3))<pipeleft){
-                    birdtop+=3; 
+                    birdtop+=3;
                 }
             if(birdtop<=document.getElementById("pipeup"+i).offsetHeight|| (birdtop+document.getElementById("bird").offsetHeight)>=pipedowntop){
                 isstarted=false;
@@ -278,7 +283,8 @@ function pipeobstacle(){
                 //console.log("pipetop:",document.getElementById("pipeup"+i).offsetHeight);
                 //console.log("birdtop+bird height:",(birdtop+document.getElementById("bird").offsetHeight));
                 //console.log("pipedowntop:",pipedowntop);
-                new Audio("public/sounds/sfx_hit.ogg").play();
+                //new Audio("public/sounds/sfx_hit.ogg").play();
+                document.getElementById("hit").click();
                 timergameID=setInterval(playmusic,200);
                 document.getElementById("bird").classList.remove("birdanimate");
                 gameover();
@@ -293,7 +299,8 @@ function pipeobstacle(){
                 changebackground();
             }
             document.getElementById("scoreboard").innerText="Score: "+score;
-            new Audio("public/sounds/sfx_point.ogg").play(); 
+            //new Audio("public/sounds/sfx_point.ogg").play(); 
+            document.getElementById("point").click();
         }
         document.getElementById("pipeup"+i).style.left=(pipeleft-pipespeed)+"px";
         document.getElementById("pipedown"+i).style.left=(pipeleft-pipespeed)+"px";
@@ -314,7 +321,8 @@ function pipeobstacle(){
 function spacebar(){
     isspacebar=11;
     birdangle=-50;
-    new Audio("public/sounds/sfx_wing.ogg").play();
+    //new Audio("public/sounds/sfx_wing.ogg").play();
+    document.getElementById("wing").click();
 }
 function gameover(){
     if(score>highestscore){highestscore=score;}
