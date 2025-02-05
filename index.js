@@ -254,8 +254,8 @@ function pipeobstacle(){
         document.getElementById("obstacles").innerHTML=document.getElementById("obstacles").innerHTML+tempstring1+tempstring2;
         if(life<3 && lifelocation===obstaclecount){
             document.getElementById("life").style.display="block";
-            document.getElementById("life").style.top=obstacleheight+40+"px";
-            document.getElementById("life").style.left=gameboxwidth+20+"px";
+            document.getElementById("life").style.top=obstacleheight+((gameboxheight-obstacleheight2)-obstacleheight)/2-20+"px";
+            document.getElementById("life").style.left=gameboxwidth+16+"px";
         }
     }
     else{
@@ -285,7 +285,7 @@ function pipeobstacle(){
             if(birdtop<=document.getElementById("pipeup"+i).offsetHeight|| (birdtop+document.getElementById("bird").offsetHeight)>=pipedowntop){
                 if(document.getElementById("bird").style.filter!="opacity(20%)"){
                     if(life>0){
-                        //document.getElementById("life"+(life-1)).style.color="rgba(255, 0, 0, 0.226)";life--;
+                        document.getElementById("life"+(life-1)).style.color="rgba(255, 0, 0, 0.226)";life--;
                         document.getElementById("bird").style.filter="opacity(20%)";
                         document.getElementById("hit").click();
                         var templocation=Math.ceil(Math.random()*20)+(life*20)+obstaclecount;
@@ -406,7 +406,7 @@ function turbo(){
     else{
         document.getElementById("btnturbo").innerText="Turbo";
         pipespeed=6;
-        obstacleintervallimit=40;
+        obstacleintervallimit=35;
     }
 }
 function hard(){
