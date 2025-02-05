@@ -1,4 +1,4 @@
-var score=0;
+var score=0,life=0,lifelocation;
 var isstarted=false;
 var isspacebar=0;
 var obstaclecount=0;
@@ -19,12 +19,14 @@ var wingsound=new Audio("public/sounds/sfx_wing.ogg");
 var hitsound=new Audio("public/sounds/sfx_hit.ogg");
 var diesound=new Audio("./public/sounds/sfx_die.ogg");
 var pointsound=new Audio("public/sounds/sfx_point.ogg");
+var lifesound=new Audio("public/sounds/1-up-3-89188.mp3");
 
 //playing the audio using location for coutinuously playing without pause.
 function playwing(){new Audio("public/sounds/sfx_wing.ogg").play();}
 function playhit(){new Audio("public/sounds/sfx_hit.ogg").play();}
 function playdie(){new Audio("public/sounds/sfx_die.ogg").play();}
 function playpoint(){new Audio("public/sounds/sfx_point.ogg").play();}
+function play1up(){new Audio("public/sounds/1-up-3-89188.mp3").play();}
 
 window.onload=()=>{
     resetgamewindowsize();
@@ -32,9 +34,8 @@ window.onload=()=>{
     hideloading();
 }
 function hideloading(){clearInterval(loadingid);document.getElementById("loading").style.display="none";}
-
 function initializeGame(){
-    score=0;
+    score=0,life=0,lifelocation=Math.ceil(Math.random()*10)+10;
     currentpipe=1;
     currentpipe2=1;
     obstaclecount=0;
@@ -45,11 +46,13 @@ function initializeGame(){
     changebackground();
     obstacleinterval=obstacleintervallimit;
     document.getElementById("obstacles").innerHTML="";
+    document.getElementById("life").style.display="none";
     document.getElementById("scoreboard").innerText="Score: 0";
     document.getElementById("startgame").innerText="Press 'Space bar or Click' to start the game!";
     document.getElementById("bird").style.transform="rotate(0deg)";
     document.getElementById("bird").classList.add("birdanimate");
     document.getElementById("bird").style.top=Math.floor(document.getElementById("gamebox").clientHeight/2)+"px";
+    document.getElementById("life0").style.color="rgba(255, 0, 0, 0.226)";document.getElementById("life1").style.color="rgba(255, 0, 0, 0.226)";document.getElementById("life2").style.color="rgba(255, 0, 0, 0.226)";
 }
 
 window.addEventListener("resize",()=>{
@@ -78,8 +81,7 @@ function resetgamewindowsize(){
     if(window.innerHeight>window.innerWidth){
         var temp=window.innerHeight;
         if(temp<600){
-        //document.getElementById("scoreboard").style.top=(temp*10/100)+"px";
-        document.getElementById("scoreboard").style.top=(temp*10/100)+"px";
+        document.getElementById("scorepanel").style.top=(temp*10/100)+"px";
         document.getElementById("gamesetting").style.top=(temp*10/100)+"px";
         document.getElementById("roof").style.top=(temp*20/100)+"px";
         document.getElementById("roof").style.height=(temp*3/100)+"px";
@@ -90,7 +92,7 @@ function resetgamewindowsize(){
         }else{
         temp=(temp-400-19+1);
         
-        document.getElementById("scoreboard").style.top=temp/4+"px";
+        document.getElementById("scorepanel").style.top=temp/4+"px";
         document.getElementById("gamesetting").style.top=temp/4+"px";
         document.getElementById("roof").style.top=temp/2.5+"px";
         document.getElementById("roof").style.height="19px";
@@ -100,7 +102,7 @@ function resetgamewindowsize(){
         document.getElementById("bg1").style.bottom=(temp-temp/2.5)+"px";
         }
     }else{
-        document.getElementById("scoreboard").style.top="10vh";
+        document.getElementById("scorepanel").style.top="10vh";
         document.getElementById("gamesetting").style.top="10vh";
         document.getElementById("roof").style.top="20vh";
         document.getElementById("roof").style.height="3vh";
@@ -248,9 +250,13 @@ function pipeobstacle(){
         }else{   
         var tempstring1="<div id='pipeup"+obstaclecount+"' class='pipeupclassnight' style='left:"+gameboxwidth+"px;height: "+obstacleheight+"px;'><div id='pipeneckup"+obstaclecount+"' class='pipeedgenight' style='top: "+(obstacleheight-25)+"px ; transform: scaley(-1);'></div></div>";
         var tempstring2="<div id='pipedown"+obstaclecount+"' class='pipeupclassnight' style='left:"+gameboxwidth+"px;top: "+(gameboxheight-obstacleheight2)+"px ;height: "+obstacleheight2+"px;'><div id='pipeneckdown"+obstaclecount+"' class='pipeedgenight'></div></div>";
-        
         }
         document.getElementById("obstacles").innerHTML=document.getElementById("obstacles").innerHTML+tempstring1+tempstring2;
+        if(life<3 && lifelocation===obstaclecount){
+            document.getElementById("life").style.display="block";
+            document.getElementById("life").style.top=obstacleheight+40+"px";
+            document.getElementById("life").style.left=gameboxwidth+20+"px";
+        }
     }
     else{
         obstacleinterval-=1;
@@ -277,18 +283,23 @@ function pipeobstacle(){
                     birdtop+=3;
                 }
             if(birdtop<=document.getElementById("pipeup"+i).offsetHeight|| (birdtop+document.getElementById("bird").offsetHeight)>=pipedowntop){
-                isstarted=false;
-                document.getElementById("bird").style.transform="rotate(80deg)";
-                //console.log("birdtop:",birdtop);
-                //console.log("pipetop:",document.getElementById("pipeup"+i).offsetHeight);
-                //console.log("birdtop+bird height:",(birdtop+document.getElementById("bird").offsetHeight));
-                //console.log("pipedowntop:",pipedowntop);
-                //new Audio("public/sounds/sfx_hit.ogg").play();
-                document.getElementById("hit").click();
-                timergameID=setInterval(playmusic,200);
-                document.getElementById("bird").classList.remove("birdanimate");
-                gameover();
-                break;
+                if(document.getElementById("bird").style.filter!="opacity(20%)"){
+                    if(life>0){
+                        //document.getElementById("life"+(life-1)).style.color="rgba(255, 0, 0, 0.226)";life--;
+                        document.getElementById("bird").style.filter="opacity(20%)";
+                        document.getElementById("hit").click();
+                        var templocation=Math.ceil(Math.random()*20)+(life*20)+obstaclecount;
+                        if(lifelocation>obstaclecount && templocation<lifelocation)lifelocation=templocation;
+                    }else{
+                        document.getElementById("hit").click();
+                        isstarted=false;
+                        document.getElementById("bird").style.transform="rotate(80deg)";
+                        timergameID=setInterval(playmusic,200);
+                        document.getElementById("bird").classList.remove("birdanimate");
+                        gameover();
+                        break;
+                    }
+                }
             }
             //document.getElementById("scoreboard").innerText="asdf";
         }
@@ -301,6 +312,7 @@ function pipeobstacle(){
             document.getElementById("scoreboard").innerText="Score: "+score;
             //new Audio("public/sounds/sfx_point.ogg").play(); 
             document.getElementById("point").click();
+            document.getElementById("bird").style.filter="opacity(100%)";
         }
         document.getElementById("pipeup"+i).style.left=(pipeleft-pipespeed)+"px";
         document.getElementById("pipedown"+i).style.left=(pipeleft-pipespeed)+"px";
@@ -316,6 +328,21 @@ function pipeobstacle(){
             document.getElementById("pipeup"+i).style.left=(pipeleft-pipespeed)+"px";
             document.getElementById("pipedown"+i).style.left=(pipeleft-pipespeed)+"px";
             }
+    }
+    if(document.getElementById("life").style.display!="none"){
+        document.getElementById("life").style.left=document.getElementById("life").offsetLeft*1-pipespeed+"px";
+        if(document.getElementById("life").offsetLeft<(document.getElementById("life").offsetWidth-1)){
+            document.getElementById("life").style.display="none";
+            if(life<3)
+            lifelocation=Math.ceil(Math.random()*20)+(life*20)+obstaclecount;
+        }
+        if((document.getElementById("bird").offsetLeft+document.getElementById("bird").offsetWidth)>=document.getElementById("life").offsetLeft && document.getElementById("bird").offsetLeft<=(document.getElementById("life").offsetLeft+document.getElementById("life").offsetWidth) && (document.getElementById("bird").offsetTop+document.getElementById("bird").offsetHeight)>=document.getElementById("life").offsetTop && document.getElementById("bird").offsetTop<=(document.getElementById("life").offsetTop+document.getElementById("life").offsetHeight) && isstarted){
+            document.getElementById("1up").click();
+            document.getElementById("life").style.display="none";
+            document.getElementById("life"+life).style.color="red";life++;
+            if(life<3)
+            lifelocation=Math.ceil(Math.random()*20)+(life*20)+obstaclecount;
+        }
     }
 }
 function spacebar(){
