@@ -91,7 +91,6 @@ function resetgamewindowsize(){
         document.getElementById("bg1").style.bottom=(temp*20/100)+"px";
         }else{
         temp=(temp-400-19+1);
-        
         document.getElementById("scorepanel").style.top=temp/4+"px";
         document.getElementById("gamesetting").style.top=temp/4+"px";
         document.getElementById("roof").style.top=temp/2.5+"px";
@@ -356,7 +355,8 @@ function gameover(){
     document.getElementById("startgame").classList.remove("hide");
     document.getElementById("startgame").innerText="Game Over! Press any key to continue.";
     document.getElementById("startgame").innerHTML="<p class='font'>Score: "+score+"</p><p class='font'>High Score: "+highestscore+"</p>";
-    canstart=false; setTimeout(()=>{interval=true;},2000);
+    canstart=false; setTimeout(()=>{if(score>0)validatehighscore(score,7); else interval=true;},2000);
+    
 }
 function changebackground(){
     if(isday){
