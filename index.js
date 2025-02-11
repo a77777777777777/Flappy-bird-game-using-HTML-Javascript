@@ -58,6 +58,10 @@ function initializeGame(){
 window.addEventListener("resize",()=>{
     resetgamewindowsize();
 });
+
+document.getElementById("highscore").addEventListener("touchstart",function(event){
+    showhighscore();
+});
 document.getElementById("gamebox").addEventListener("touchend",function(event){
     event.preventDefault();
 });
@@ -171,7 +175,6 @@ document.getElementById("gamebox").addEventListener("touchstart",function(event)
 });
 document.getElementById("floor").addEventListener("touchstart",function(event){
     event.preventDefault();
-    if(event.target.matches(".hsbackground")) return;
     if(isstarted){
             spacebar();
       }
