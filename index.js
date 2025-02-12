@@ -14,7 +14,7 @@ var canstart,interval;
 var isday=true;
 var pipegap=4.3;
 var pipeminheight;
-// pre loading the audio to prevent any lag
+// pre loading the audio to prevent any lag 
 var wingsound=new Audio("public/sounds/sfx_wing.ogg");
 var hitsound=new Audio("public/sounds/sfx_hit.ogg");
 var diesound=new Audio("./public/sounds/sfx_die.ogg");
@@ -175,6 +175,10 @@ document.getElementById("gamebox").addEventListener("touchstart",function(event)
 });
 document.getElementById("floor").addEventListener("touchstart",function(event){
     event.preventDefault();
+});
+document.getElementById("floor").addEventListener("mousedown",function(event){
+    event.preventDefault();
+    if(event.target.id!="floor")return;
     if(isstarted){
             spacebar();
       }
