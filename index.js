@@ -59,7 +59,10 @@ window.addEventListener("resize",()=>{
     resetgamewindowsize();
 });
 
-document.getElementById("highscore").addEventListener("touchstart",function(event){
+document.getElementById("highscore").addEventListener("touchstart",function(){
+    showhighscore();
+});
+document.getElementById("highscore").addEventListener("click",function(){
     showhighscore();
 });
 document.getElementById("gamebox").addEventListener("touchend",function(event){
@@ -173,10 +176,12 @@ document.getElementById("gamebox").addEventListener("touchstart",function(event)
         initializeGame();
       }
 });
+
+
 document.getElementById("floor").addEventListener("touchstart",function(event){
     event.preventDefault();
 });
-document.getElementById("floor").addEventListener("mousedown",function(event){
+document.getElementById("floor").addEventListener("touchstart",function(event){
     event.preventDefault();
     if(event.target.id!="floor")return;
     if(isstarted){

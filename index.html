@@ -252,6 +252,7 @@ var newhighscore=0,scoreboardsize=10;
   .scorerow{
     display: flex; padding:4px; margin-top:2px; justify-content: space-between;
     backdrop-filter: brightness(77%);
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
   .scorerow:hover{ filter: brightness(110%); }
 </style>
@@ -314,13 +315,14 @@ var newhighscore=0,scoreboardsize=10;
   <div class="font" style="z-index: 6;font-size: 10px;margin:10px;position: absolute;bottom: 0px;right:10px;">The game concept was observed from 'https://github.com/KelvinThai/floppyBird_gamefi/tree/main/game' and few assets files were accessed from the original game files.</div>
 
   <div id="highscore" class="hsbackground">
-    <div class="hstitle" onclick="showhighscore()" onmouseover="mouseover()" onmouseleave="mouseleave()"><div style="margin-left: 4px;">High Score</div><div style="height: 20px;width:25px;"><svg xmlns="http://www.w3.org/2000/svg" id="hscaret" style="filter: invert(100%);margin-right:5px;" width="20px" height="20px" viewBox="0 0 512 512"><path d="M190.06,414,353.18,274.22a24,24,0,0,0,0-36.44L190.06,98c-15.57-13.34-39.62-2.28-39.62,18.22V395.82C150.44,416.32,174.49,427.38,190.06,414Z"/></svg></div></div>
-    <div id="scoreboarddisplay" class="hsbackground" style="position:absolute; display: none;height:120px; border-radius: 5px;"><div id="hsscoreboard" style="backdrop-filter: brightness(62.3%) hue-rotate(19deg) sepia(3%);">
-        <div id="scorerow1" class="scorerow"><div id="name1">1.User1</div><div id="score1" style="align-self: flex-end;">500</div></div>
-        <div id="scorerow2" class="scorerow"><div id="name2">2.User2</div><div id="score2" style="align-self: flex-end;">300</div></div>
-        <div id="scorerow3" class="scorerow"><div id="name3">3.User3</div><div id="score3" style="align-self: flex-end;">100</div></div>
-    </div></div>
+    <div class="hstitle" onmouseover="mouseover()" onmouseleave="mouseleave()"><div style="margin-left: 4px;">High Score</div><div style="height: 20px;width:25px;"><svg xmlns="http://www.w3.org/2000/svg" id="hscaret" style="filter: invert(100%);margin-right:5px;" width="20px" height="20px" viewBox="0 0 512 512"><path d="M190.06,414,353.18,274.22a24,24,0,0,0,0-36.44L190.06,98c-15.57-13.34-39.62-2.28-39.62,18.22V395.82C150.44,416.32,174.49,427.38,190.06,414Z"/></svg></div></div>
   </div>
+
+  <div id="scoreboarddisplay" class="hsbackground" style="position:absolute; display: none;height:120px; border-radius: 5px;"><div id="hsscoreboard" style="backdrop-filter: brightness(62.3%) hue-rotate(19deg) sepia(3%);">
+    <div id="scorerow1" class="scorerow"><div id="name1">1.User1</div><div id="score1" style="align-self: flex-end;">500</div></div>
+    <div id="scorerow2" class="scorerow"><div id="name2">2.User2</div><div id="score2" style="align-self: flex-end;">300</div></div>
+    <div id="scorerow3" class="scorerow"><div id="name3">3.User3</div><div id="score3" style="align-self: flex-end;">100</div></div>
+</div></div>
 
 </footer>
 <script src="index.js"></script>
